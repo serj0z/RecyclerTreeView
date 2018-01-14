@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class TreeViewAdapter extends RecyclerView.Adapter<TreeViewAdapter
-.TreeViewHolderBase> {
+		.TreeViewHolderBase> {
 
 	private Context _context;
 	private List<TreeNode> _treeNodesSource;
@@ -37,7 +37,7 @@ public abstract class TreeViewAdapter extends RecyclerView.Adapter<TreeViewAdapt
 		TypedArray paddings = getViewDefaultPaddings();
 
 		holder.itemView.setPadding(paddings.getDimensionPixelSize(0, 0) * node.Level, paddings
-				.getDimensionPixelSize(1, 0), paddings.getDimensionPixelSize(2, 0),
+						.getDimensionPixelSize(1, 0), paddings.getDimensionPixelSize(2, 0),
 				paddings.getDimensionPixelSize(3, 0));
 
 		ImageView image = holder.ToggleImageView;
@@ -102,7 +102,7 @@ public abstract class TreeViewAdapter extends RecyclerView.Adapter<TreeViewAdapt
 		List<TreeNode> childNodes = node.getChildrens();
 		_treeNodesVisible.addAll(position + 1, childNodes);
 
-		notifyItemRangeInserted(position + 1, _treeNodesVisible.size());
+		notifyItemRangeInserted(position + 1, childNodes.size());
 	}
 
 	public void collapse(TreeNode node) {
@@ -133,7 +133,7 @@ public abstract class TreeViewAdapter extends RecyclerView.Adapter<TreeViewAdapt
 			_treeNodesVisible.removeAll(expandedItems);
 
 		}
-		notifyItemRangeRemoved(position, _treeNodesVisible.size());
+		notifyItemRangeRemoved(position + 1, expandedItemsCount);
 		notifyItemRangeChanged(position, _treeNodesVisible.size());
 	}
 
